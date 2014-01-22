@@ -15,7 +15,8 @@
  limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hbase-sep-api</artifactId>
@@ -37,5 +38,54 @@
       <artifactId>zookeeper</artifactId>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>0.94</id>
+      <activation>
+        <property>
+          <name>!hbase.api</name>
+        </property>
+      </activation>
+
+      <properties>
+        <log4j.properties.file>log4j-0.94.properties</log4j.properties.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase</artifactId>
+          <type>test-jar</type>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>0.95</id>
+      <activation>
+        <property>
+          <name>hbase.api</name>
+          <value>0.95</value>
+        </property>
+      </activation>
+
+      <properties>
+        <log4j.properties.file>log4j-0.95.properties</log4j.properties.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase-server</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

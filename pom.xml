@@ -16,7 +16,8 @@
  * limitations under the License.
  */
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <properties>
     <version.solr>4.4.0</version.solr>
@@ -420,12 +421,6 @@
 
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-sep-impl</artifactId>
-            <version>1.5-hbase0.94-SNAPSHOT</version>
-          </dependency>
-
           <!-- We have to explicitly manage Hadoop dependencies here, since they are optional in HBase -->
           <dependency>
             <groupId>org.apache.hadoop</groupId>
@@ -469,20 +464,6 @@
           </dependency>
         </dependencies>
       </dependencyManagement>
-
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.hbase</groupId>
-          <artifactId>hbase</artifactId>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.hbase</groupId>
-          <artifactId>hbase</artifactId>
-          <type>test-jar</type>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
     </profile>
 
     <profile>
@@ -496,12 +477,6 @@
 
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-sep-impl</artifactId>
-            <version>1.5-hbase0.95-SNAPSHOT</version>
-          </dependency>
-
           <!-- We have to explicitly manage Hadoop dependencies here, since they are optional in HBase -->
           <dependency>
             <groupId>org.apache.hadoop</groupId>
@@ -544,30 +519,8 @@
             <artifactId>hadoop-core</artifactId>
             <version>${version.hadoop.mr1.hbase95}</version>
           </dependency>
-
         </dependencies>
       </dependencyManagement>
-
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.hbase</groupId>
-          <artifactId>hbase-server</artifactId>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.hbase</groupId>
-          <artifactId>hbase-client</artifactId>
-          <type>test-jar</type>
-          <scope>test</scope>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.hbase</groupId>
-          <artifactId>hbase-common</artifactId>
-          <type>test-jar</type>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
     </profile>
   </profiles>
 

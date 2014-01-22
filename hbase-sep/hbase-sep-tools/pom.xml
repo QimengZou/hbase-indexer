@@ -14,7 +14,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hbase-sep-tools</artifactId>
@@ -38,10 +39,6 @@
       <artifactId>hadoop-hdfs</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ngdata</groupId>
-      <artifactId>hbase-sep-impl</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
     </dependency>
@@ -53,5 +50,50 @@
 
   <build>
   </build>
+
+  <profiles>
+    <profile>
+      <id>0.94</id>
+      <activation>
+        <property>
+          <name>!hbase.api</name>
+        </property>
+      </activation>
+
+      <properties>
+        <log4j.properties.file>log4j-0.94.properties</log4j.properties.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>com.ngdata</groupId>
+          <artifactId>hbase-sep-impl-hbase0.94</artifactId>
+          <version>1.4-SNAPSHOT</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>0.95</id>
+      <activation>
+        <property>
+          <name>hbase.api</name>
+          <value>0.95</value>
+        </property>
+      </activation>
+
+      <properties>
+        <log4j.properties.file>log4j-0.95.properties</log4j.properties.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>com.ngdata</groupId>
+          <artifactId>hbase-sep-impl-hbase0.94</artifactId>
+          <version>1.4-SNAPSHOT</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

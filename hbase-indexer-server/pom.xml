@@ -16,7 +16,8 @@
  * limitations under the License.
  */
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hbase-indexer-server</artifactId>
@@ -104,24 +105,48 @@
       <groupId>org.kohsuke</groupId>
       <artifactId>akuma</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-hdfs</artifactId>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-common</artifactId>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 
+
   <profiles>
+    <profile>
+      <id>0.94</id>
+      <activation>
+        <property>
+          <name>!hbase.api</name>
+        </property>
+      </activation>
+
+      <properties>
+        <log4j.properties.file>log4j-0.94.properties</log4j.properties.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase</artifactId>
+          <type>test-jar</type>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-hdfs</artifactId>
+          <classifier>tests</classifier>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-common</artifactId>
+          <classifier>tests</classifier>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
     <profile>
       <id>0.95</id>
       <activation>
@@ -136,6 +161,18 @@
           <groupId>org.apache.hbase</groupId>
           <artifactId>hbase-server</artifactId>
           <type>test-jar</type>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase-common</artifactId>
+          <type>test-jar</type>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-common</artifactId>
+          <classifier>tests</classifier>
           <scope>test</scope>
         </dependency>
         <dependency>
@@ -172,7 +209,8 @@
             <phase>process-resources</phase>
             <configuration>
               <target>
-                <replace file="${project.build.outputDirectory}/hbase-indexer-default.xml" token="@@@VERSION@@@" value="${project.version}" />
+                <replace file="${project.build.outputDirectory}/hbase-indexer-default.xml" token="@@@VERSION@@@"
+                         value="${project.version}"/>
               </target>
             </configuration>
             <goals>

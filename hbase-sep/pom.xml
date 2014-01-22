@@ -13,7 +13,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hbase-sep</artifactId>
@@ -32,36 +33,9 @@
     <module>hbase-sep-impl</module>
     <module>hbase-sep-demo</module>
     <module>hbase-sep-tools</module>
+    <module>hbase-sep-impl-0.94</module>
+    <module>hbase-sep-impl-0.95</module>
   </modules>
-
-  <profiles>
-    <profile>
-      <id>0.94</id>
-      <activation>
-        <property>
-          <name>!hbase.api</name>
-        </property>
-      </activation>
-
-      <modules>
-        <module>hbase-sep-impl-0.94</module>
-      </modules>
-    </profile>
-
-    <profile>
-      <id>0.95</id>
-      <activation>
-        <property>
-          <name>hbase.api</name>
-          <value>0.95</value>
-        </property>
-      </activation>
-
-      <modules>
-        <module>hbase-sep-impl-0.95</module>
-      </modules>
-    </profile>
-  </profiles>
 
   <build>
   </build>
